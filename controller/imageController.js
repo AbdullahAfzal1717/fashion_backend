@@ -56,7 +56,7 @@ export const analyzeImage = async (req, res) => {
     const groqRes = await axios.post(
       GROQ_API_URL,
       {
-        model: "llama-3.3-70b-versatile", 
+        model: "llama-3.3-70b-versatile",
         messages: [
           {
             role: "system",
@@ -85,13 +85,13 @@ export const analyzeImage = async (req, res) => {
       console.error("Error parsing Groq response:", e);
     }
 
-    fs.unlink(req.file.path, () => {});
+    fs.unlink(req.file.path, () => { });
 
     return res.json({ tags, colors, fashion_recommendations });
   } catch (error) {
     console.error("BACKEND ERROR:", error.message);
     if (error.response) console.error("API Error:", error.response.data);
-    if (req.file?.path) fs.unlink(req.file.path, () => {});
+    if (req.file?.path) fs.unlink(req.file.path, () => { });
     return res.status(500).json({ error: "Image analysis failed", details: error.message });
   }
 }; 
