@@ -6,7 +6,10 @@ import imageRoutes from "./routes/imageRoutes.js";
 dotenv.config();
 const app = express();
 
+app.get("/", (req, res) => {
+    res.send("API is running");
+});
+
 app.use(cors());
 app.use("/api", imageRoutes);
 
-app.listen(5000, () => console.log("Server running on port 5000"));
